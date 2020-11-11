@@ -19,7 +19,6 @@
 
   <script>
   /* JAVASCRIPT CODE GOES HERE */
-  
     var streamPlot = document.getElementById('myDiv');
     var ctime = document.getElementById('time');
     
@@ -47,19 +46,7 @@
 
             // when new data is coming, keep on streaming data           
             ctime.innerHTML = dtda[0];
-            //nextPt();
-            tArray = tArray.concat(dtda[0]);
-            tArray.splice(0,1);
-            xTrack = xTrack.concat(dtda[1]);
-            xTrack.splice(0,1);
-
-            var update = {
-                x:[tArray],
-                y:[xTrack]
-            }
-
-            Plotly.update(streamPlot,update);
-                                          
+            nextPt();                                
         });
     }); 
 
@@ -70,19 +57,19 @@
             xTrack.push(dtda[1]);  // CdS sensor (lux)
         }
 
-        Plotly.newPlot(streamPlot, data, layout);
+        Plotly.Plot(streamPlot, data, layout);
     }
     
-    // function nextPt() {
+    function nextPt() {
 
-    //     tArray.shift();
-    //     tArray.push(dtda[0]);
+        tArray.shift();
+        tArray.push(dtda[0]);
         
-    //     xTrack.shift();
-    //     xTrack.push(dtda[1]);  // CdS sensor: lux
+        xTrack.shift();
+        xTrack.push(dtda[1]);  // CdS sensor: lux
 
-    //     Plotly.redraw(streamPlot);  
-    // }       
+        Plotly.redraw(streamPlot);  
+    }       
 
     // data
     var data = [{
@@ -108,12 +95,12 @@
     var layout = {
         xaxis : {
             title : 'time',
-            domain : [0,1]
+            domain : [0, 1]
         },
         yaxis : {
             title : 'luminosity (lux)',
-            domain : [0,1],
-            range : [0,500]
+            domain : [0, 1],
+            range : [0,]
         }
     };
 

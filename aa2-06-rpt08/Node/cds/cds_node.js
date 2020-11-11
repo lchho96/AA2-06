@@ -34,7 +34,7 @@ parser.on("data", (data) => {
   dStr = getDateString();
   tdata[0] = dStr; // date
   tdata[1] = data; // data
-  console.log("AA00," + tdata);
+  console.log("AA06,20," + tdata);
   io.sockets.emit("message", tdata); // send data to all clients
 });
 
